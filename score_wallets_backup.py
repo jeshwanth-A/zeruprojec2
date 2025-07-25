@@ -15,12 +15,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 class CompoundWalletScorer:
-    def __init__(self, use_simulation=False):
-        """Initialize the wallet scorer.
-        
-        Args:
-            use_simulation: If True, use simulation data. Default False for real API data.
-        """
+    def __init__(self, use_simulation=True):
         self.api_url = "https://api.thegraph.com/subgraphs/name/graphprotocol/compound-v2"
         self.headers = {"Content-Type": "application/json"}
         self.use_simulation = use_simulation
@@ -52,9 +47,6 @@ class CompoundWalletScorer:
             blockTime underlyingAmount cTokenSymbol
           }
           repayEvents: repayEvents(where: {borrower: $wallet}, first: 1000) {
-            blockTime underlyingAmount cTokenSymbol
-          }
-          redeemEvents: redeemEvents(where: {from: $wallet}, first: 1000) {
             blockTime underlyingAmount cTokenSymbol
           }
           liquidationEvents: liquidationEvents(where: {borrower: $wallet}, first: 1000) {
