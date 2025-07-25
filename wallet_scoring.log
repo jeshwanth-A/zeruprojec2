@@ -1,0 +1,32 @@
+2025-07-26 02:26:12,447 - INFO - 🚀 Initialized DeFi Wallet Risk Scorer
+2025-07-26 02:26:12,447 - INFO -    Mode: Simulation
+2025-07-26 02:26:12,447 - INFO -    Workers: 5
+2025-07-26 02:26:12,451 - INFO - 🚀 Processing 103 wallets...
+2025-07-26 02:26:12,452 - INFO - 📊 Completed 10/103 wallets
+2025-07-26 02:26:12,453 - INFO - 📊 Completed 20/103 wallets
+2025-07-26 02:26:12,454 - INFO - 📊 Completed 30/103 wallets
+2025-07-26 02:26:12,455 - INFO - 📊 Completed 40/103 wallets
+2025-07-26 02:26:12,455 - INFO - 📊 Completed 50/103 wallets
+2025-07-26 02:26:12,457 - INFO - 📊 Completed 60/103 wallets
+2025-07-26 02:26:12,458 - INFO - 📊 Completed 70/103 wallets
+2025-07-26 02:26:12,459 - INFO - 📊 Completed 80/103 wallets
+2025-07-26 02:26:12,459 - INFO - 📊 Completed 90/103 wallets
+2025-07-26 02:26:12,460 - INFO - 📊 Completed 100/103 wallets
+2025-07-26 02:26:12,463 - INFO - ✅ Successfully processed 103 wallets
+2025-07-26 02:26:12,464 - INFO - 📄 Features saved to wallet_features.csv
+2025-07-26 02:26:12,465 - INFO - 📄 Scores saved to wallet_scores.csv
+2025-07-26 02:34:00,510 - INFO - Initialized DeFi Wallet Risk Scorer - Mode: Simulation
+2025-07-26 02:34:00,512 - INFO - Processing 103 wallets...
+2025-07-26 02:34:00,513 - INFO - Completed 10/103 wallets
+2025-07-26 02:34:00,514 - INFO - Completed 20/103 wallets
+2025-07-26 02:34:00,514 - INFO - Completed 30/103 wallets
+2025-07-26 02:34:00,515 - INFO - Completed 40/103 wallets
+2025-07-26 02:34:00,515 - INFO - Completed 50/103 wallets
+2025-07-26 02:34:00,516 - INFO - Completed 60/103 wallets
+2025-07-26 02:34:00,517 - INFO - Completed 70/103 wallets
+2025-07-26 02:34:00,517 - INFO - Completed 80/103 wallets
+2025-07-26 02:34:00,517 - INFO - Completed 90/103 wallets
+2025-07-26 02:34:00,518 - INFO - Completed 100/103 wallets
+2025-07-26 02:34:00,521 - INFO - Successfully processed 103 wallets
+2025-07-26 02:34:00,522 - INFO - Features saved to wallet_features.csv
+2025-07-26 02:34:00,523 - INFO - Scores saved to wallet_scores.csv
