@@ -1,46 +1,56 @@
 # DeFi Wallet Risk Scorer
 
-Analyzes wallet addresses and gives them risk scores (0-1000). Lower score = higher risk.
+A Python tool that analyzes Ethereum wallet addresses for risk in Compound V2 lending protocol. Assigns scores from 0-1000 (lower = higher risk) based on transaction history.
+
+## Features
+- Fetches real on-chain data via TheGraph API (with simulation fallback)
+- Engineers 17+ risk features (e.g., liquidation count, repay rate, health factor)
+- Rule-based scoring with Min-Max normalization
+- Parallel processing for efficiency (100+ wallets in ~1 minute)
+- Unit tests and logging included
 
 ## Quick Start
 
-```bash
-pip install pandas requests scikit-learn
-python wallet_risk_scorer.py
-```
+1. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
 
-## Files
+2. Prepare `wallets.csv` (one column: `wallet_id` with addresses).
 
-- `wallet_risk_scorer.py` - Main program (everything in one file)
-- `wallets.csv` - Input wallet addresses
-- `wallet_scores.csv` - Output scores
-- `wallet_features.csv` - Detailed analysis
+3. Run:
+   ```
+   python wallet_risk_scorer.py
+   ```
+
+Outputs:
+- `wallet_scores.csv`: Wallet IDs and final risk scores
+- `wallet_features.csv`: Detailed feature breakdowns
+- `wallet_scoring.log`: Process logs
 
 ## Options
-
-```bash
-python wallet_risk_scorer.py              # Normal mode
-python wallet_risk_scorer.py --simulation # Test mode
-python wallet_risk_scorer.py --test       # Run tests
+```
+python wallet_risk_scorer.py --help          # Show all options
+python wallet_risk_scorer.py --simulation    # Use simulation mode for testing
+python wallet_risk_scorer.py --test          # Run unit tests
+python wallet_risk_scorer.py --workers 10    # Use more concurrent workers
 ```
 
-## How It Works
+For a clear, detailed explanation of methodology, features, scoring logic, and risk justification, see [explanation.md](explanation.md).
 
-1. Takes wallet addresses from `wallets.csv`
-2. Gets transaction data from Compound V2 protocol
-3. Analyzes risk factors (liquidations, borrowing patterns, repayment history)
-4. Assigns scores: 700+ = low risk, 400-699 = medium risk, 0-399 = high risk
-5. Saves results to CSV files
+## Risk Scoring Overview
+- **700-1000**: Low risk (responsible users)
+- **400-699**: Medium risk (needs monitoring)
+- **0-399**: High risk (avoid lending)
 
-## Risk Factors
-
-- **Liquidation history** - Past liquidations reduce score significantly
-- **Borrowing patterns** - High leverage reduces score
-- **Repayment behavior** - Poor repayment reduces score
-- **Activity frequency** - Extreme activity reduces score
-- **Health factor** - Low collateralization reduces score
+Factors: Liquidations (-major points), over-borrowing, poor repayment, extreme activity, low health factor.
 
 ## Requirements
-
 - Python 3.7+
-- pandas, requests, scikit-learn
+- Libraries: pandas, requests, scikit-learn (in `requirements.txt`)
+
+## License
+MIT License - see [LICENSE](LICENSE) for details.
+
+## Contributing
+Fork and PR! Issues welcome for bugs or features.
