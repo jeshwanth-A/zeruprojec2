@@ -17,19 +17,19 @@ query($wallet: String!) {
     countLiquidated
     hasBorrowed
   }
-  
+
   mintEvents: mintEvents(where: {to: $wallet}) {
     blockTime, underlyingAmount, cTokenSymbol
   }
-  
+
   borrowEvents: borrowEvents(where: {borrower: $wallet}) {
     blockTime, underlyingAmount, cTokenSymbol
   }
-  
+
   repayEvents: repayEvents(where: {borrower: $wallet}) {
     blockTime, underlyingAmount, cTokenSymbol
   }
-  
+
   liquidationEvents: liquidationEvents(where: {borrower: $wallet}) {
     blockTime, repayAmount, seizeTokens
   }
@@ -47,7 +47,7 @@ query($wallet: String!) {
 
 #### 1. Liquidation Count (Weight: Critical)
 **Definition**: Number of times a wallet has been liquidated
-**Risk Logic**: 
+**Risk Logic**:
 - Liquidations represent forced closures due to insufficient collateral
 - In DeFi, liquidations occur when debt ratios exceed protocol limits
 - Historical liquidations predict future default risk
@@ -65,7 +65,7 @@ query($wallet: String!) {
 
 **Scoring Thresholds**:
 - < 0.3: -200 points (very poor repayment)
-- < 0.6: -100 points (poor repayment)  
+- < 0.6: -100 points (poor repayment)
 - > 1.2: +50 points (over-repayment bonus)
 
 **Edge Cases Handled**:
@@ -189,11 +189,11 @@ normalized_features = scaler.fit_transform(feature_matrix)
 ```python
 def calculate_risk_score(features):
     base_score = 1000
-    
+
     # Critical Risk Factors
     if liquidation_count > 0:
         base_score -= 300 * min(liquidation_count, 3)
-    
+
     # Repayment Behavior
     if repay_rate < 0.3:
         base_score -= 200
@@ -201,7 +201,7 @@ def calculate_risk_score(features):
         base_score -= 100
     elif repay_rate > 1.2:
         base_score += 50
-    
+
     # Leverage Assessment
     if borrow_to_deposit_ratio > 5.0:
         base_score -= 150
@@ -209,28 +209,28 @@ def calculate_risk_score(features):
         base_score -= 75
     elif borrow_to_deposit_ratio < 0.5:
         base_score += 25
-    
+
     # Activity Patterns
     if transaction_frequency > 10:
         base_score -= 100  # Bot penalty
-    
+
     if days_active < 7 and total_borrows > 3:
         base_score -= 75   # Hit-and-run penalty
     elif days_active > 365:
         base_score += 50   # Long-term bonus
-    
+
     # Current Risk
     debt_ratio = current_borrow / max(current_supply, 1)
     if debt_ratio > 0.8:
         base_score -= 100
     elif debt_ratio < 0.3:
         base_score += 25
-    
+
     # Behavioral Bonuses
-    if (total_deposits > 5 and liquidation_count == 0 and 
+    if (total_deposits > 5 and liquidation_count == 0 and
         repay_rate > 0.8):
         base_score += 100  # Good user bonus
-    
+
     return max(0, min(1000, base_score))
 ```
 
